@@ -28,7 +28,9 @@ namespace ProjAPIBanco.Controllers
         //}
 
         // GET: api/Bancoes
+
         [HttpGet]
+
         //public async Task<ActionResult<IEnumerable<Banco>>> GetBanco()
         //{
         //  if (_context.Banco == null)

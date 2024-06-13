@@ -14,6 +14,16 @@ namespace APIRun.Data
         {
 
         }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    // Configura a chave primária na entidade raiz Pessoa
+        //    modelBuilder.Entity<Pessoa>()
+        //        .HasKey(p => p.Documento);
+        //    modelBuilder.Entity<Cliente>().ToTable("Cliente");
+        //    modelBuilder.Entity<Funcionario>().ToTable("Funcionario");
+        //}
+
         public DbSet<Models.TipoPix> TipoPix { get; set; } = default!;
         public DbSet<Models.Categoria> Categoria { get; set; } = default!;
         public DbSet<Models.CNH> CNH { get; set; } = default!;

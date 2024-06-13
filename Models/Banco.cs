@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +11,9 @@ namespace Models
 {
     public class Banco
     {
-        [Key]
+        //[Key]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string cnpj {  get; set; }
         public string NomeBanco { get; set; }
         public DateTime DataFundacao { get; set; }
