@@ -14,15 +14,6 @@ namespace APIRun.Data
         {
 
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    // Configura a chave primária na entidade raiz Pessoa
-        //    modelBuilder.Entity<Pessoa>()
-        //        .HasKey(p => p.Documento);
-        //    modelBuilder.Entity<Cliente>().ToTable("Cliente");
-        //    modelBuilder.Entity<Funcionario>().ToTable("Funcionario");
-        //}
 
         public DbSet<Models.TipoPix> TipoPix { get; set; } = default!;
         public DbSet<Models.Categoria> Categoria { get; set; } = default!;
@@ -42,19 +33,25 @@ namespace APIRun.Data
         public DbSet<Models.Funcionario> Funcionario { get; set; } = default!;
         public DbSet<Models.Cargo> Cargo { get; set; } = default!;
         public DbSet<Models.Venda> Venda { get; set; } = default!;
+        public DbSet<Models.Pessoa> Pessoa { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // Configura a chave primária na entidade raiz Pessoa
-            modelBuilder.Entity<Pessoa>()
-                .HasKey(p => p.Documento);
 
-            modelBuilder.Entity<Condutor>().ToTable("Condutor"); // Forçando a criar essa tabela isolada
-            modelBuilder.Entity<Cliente>().ToTable("Cliente"); 
-            modelBuilder.Entity<Funcionario>().ToTable("Funcionario"); 
-            modelBuilder.Entity<CNH>().ToTable("CNH");
+            modelBuilder.Entity<Models.Funcionario>()
+                .HasBaseType<Pessoa>().ToTable("Funcionario");
+
+            modelBuilder.Entity<Models.Cliente>()
+                .HasBaseType<Pessoa>().ToTable("Cliente");
+
+            modelBuilder.Entity<Models.Condutor>()
+                .HasBaseType<Pessoa>().ToTable("Condutor");
+
+
         }
+
     }
 }

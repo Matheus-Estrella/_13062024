@@ -4,17 +4,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:18709",
-      "sslPort": 44349
+      "applicationUrl": "http://localhost:62456",
+      "sslPort": 44308
     }
   },
   "profiles": {
-    "ProjAPICarro.Funcionario": {
+    "ProjAndreVeiculos.Funcionario": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7286;http://localhost:5117",
+      "applicationUrl": "https://localhost:7057;http://localhost:5112",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
-using ProjAPICarro.Funcionario.Data;
+using ProjAndreVeiculos.Funcionario.Data;
 
-namespace ProjAPICarro.Funcionario.Controllers
+namespace ProjAndreVeiculos.Funcionario.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FuncionariosController : ControllerBase
     {
-        private readonly ProjAPICarroFuncionarioContext _context;
+        private readonly ProjAndreVeiculosFuncionarioContext _context;
 
-        public FuncionariosController(ProjAPICarroFuncionarioContext context)
+        public FuncionariosController(ProjAndreVeiculosFuncionarioContext context)
         {
             _context = context;
         }
@@ -88,7 +88,7 @@ namespace ProjAPICarro.Funcionario.Controllers
         {
           if (_context.Funcionario == null)
           {
-              return Problem("Entity set 'ProjAPICarroFuncionarioContext.Funcionario'  is null.");
+              return Problem("Entity set 'ProjAndreVeiculosFuncionarioContext.Funcionario'  is null.");
           }
             _context.Funcionario.Add(funcionario);
             try

@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ProjAPICarro.Cliente.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ProjAPICarroClienteContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ProjAPICarroClienteContext") ?? throw new InvalidOperationException("Connection string 'ProjAPICarroClienteContext' not found.")));
 
 // Add services to the container.
 

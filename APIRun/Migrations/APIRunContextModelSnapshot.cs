@@ -188,7 +188,7 @@ namespace APIRun.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("CNH", (string)null);
+                    b.ToTable("CNH");
                 });
 
             modelBuilder.Entity("Models.Compra", b =>
@@ -401,14 +401,12 @@ namespace APIRun.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ClienteDocumento")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FuncionarioDocumento")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PagamentoId")
@@ -564,15 +562,11 @@ namespace APIRun.Migrations
 
                     b.HasOne("Models.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ClienteDocumento")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteDocumento");
 
                     b.HasOne("Models.Funcionario", "Funcionario")
                         .WithMany()
-                        .HasForeignKey("FuncionarioDocumento")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FuncionarioDocumento");
 
                     b.HasOne("Models.Pagamento", "Pagamento")
                         .WithMany()

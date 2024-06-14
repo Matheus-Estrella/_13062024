@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace APIRun.Migrations
 {
-    public partial class runAll2 : Migration
+    public partial class InitialCreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -137,6 +137,26 @@ namespace APIRun.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoPix", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Compra",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CarroPlaca = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DataCompra = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compra", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Compra_Carro_CarroPlaca",
+                        column: x => x.CarroPlaca,
+                        principalTable: "Carro",
+                        principalColumn: "Placa");
                 });
 
             migrationBuilder.CreateTable(
@@ -338,8 +358,8 @@ namespace APIRun.Migrations
                     CarroPlaca = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ValorVenda = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
-                    ClienteDocumento = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FuncionarioDocumento = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClienteDocumento = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FuncionarioDocumento = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     PagamentoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -354,14 +374,12 @@ namespace APIRun.Migrations
                         name: "FK_Venda_Cliente_ClienteDocumento",
                         column: x => x.ClienteDocumento,
                         principalTable: "Cliente",
-                        principalColumn: "Documento",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Documento");
                     table.ForeignKey(
                         name: "FK_Venda_Funcionario_FuncionarioDocumento",
                         column: x => x.FuncionarioDocumento,
                         principalTable: "Funcionario",
-                        principalColumn: "Documento",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Documento");
                     table.ForeignKey(
                         name: "FK_Venda_Pagamento_PagamentoId",
                         column: x => x.PagamentoId,
@@ -384,6 +402,11 @@ namespace APIRun.Migrations
                 name: "IX_CNH_CategoriaId",
                 table: "CNH",
                 column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Compra_CarroPlaca",
+                table: "Compra",
+                column: "CarroPlaca");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Condutor_CnhId",
@@ -445,6 +468,9 @@ namespace APIRun.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CarroServico");
+
+            migrationBuilder.DropTable(
+                name: "Compra");
 
             migrationBuilder.DropTable(
                 name: "Condutor");
